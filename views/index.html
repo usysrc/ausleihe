@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Ausleihe</title>
+  <script src="https://cdn.jsdelivr.net/npm/htmx.org@latest"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            clifford: '#da373d',
+          }
+        }
+      }
+    }
+  </script>
+</head>
+
+<body>
+  <div class="container mx-auto">
+    <h1 class="text-3xl font-bold text-clifford">
+      Ausleihe
+    </h1>
+    <form hx-post="/add-item" hx-ext="json" hx-target="body">
+      <input id="startDateTime-{{.ID}}" type="datetime-local" name="startDateTime"
+        class="mt-1 mb-3 border rounded px-2 py-1" required>
+
+      <input id="endDateTime-{{.ID}}" type="datetime-local" name="endDateTime"
+        class="mt-1 mb-3 border rounded px-2 py-1" required>
+      <br />
+      <input type="text" name="name" placeholder="Item Name" required>
+      <button type="submit">Buchen</button>
+    </form>
+    <div id="items-list">
+      <ul>
+        {{ range .Items }}
+        <li>{{ .ID }}: {{ .Name }}</li>
+        {{ end }}
+      </ul>
+    </div>
+  </div>
+</body>
+
+</html>
