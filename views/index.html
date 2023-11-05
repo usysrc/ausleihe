@@ -24,15 +24,16 @@
     <h1 class="text-3xl font-bold text-clifford">
       Ausleihe
     </h1>
-    <form hx-post="/add-item" hx-ext="json" hx-target="body">
+    <form hx-get="/" hx-ext="json" hx-target="body">
       <input id="startDateTime-{{.ID}}" type="datetime-local" name="startDateTime"
-        class="mt-1 mb-3 border rounded px-2 py-1" required>
+        class="mt-1 mb-3 border rounded px-2 py-1" required value={{ .Now }}>
 
       <input id="endDateTime-{{.ID}}" type="datetime-local" name="endDateTime"
-        class="mt-1 mb-3 border rounded px-2 py-1" required>
+        class="mt-1 mb-3 border rounded px-2 py-1" required value={{ .NextWeek }}>
+
       <br />
-      <input type="text" name="name" placeholder="Item Name" required>
-      <button type="submit">Buchen</button>
+
+      <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Search</button>
     </form>
     <div id="items-list">
       <ul>
