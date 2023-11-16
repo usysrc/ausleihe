@@ -9,6 +9,7 @@ import (
 	"github.com/gofiber/template/html/v2"
 	slogfiber "github.com/samber/slog-fiber"
 
+	"github.com/usysrc/ausleihe/config"
 	"github.com/usysrc/ausleihe/db"
 	"github.com/usysrc/ausleihe/handler"
 )
@@ -43,9 +44,8 @@ func main() {
 	app.Post("/add-item", handler.ItemHandler)
 
 	// Start server
-	port := 3000
-	logger.Info(fmt.Sprintf("Starting server on localhost:%d", port))
-	err = app.Listen(fmt.Sprintf(":%d", port))
+	logger.Info(fmt.Sprintf("Starting server on localhost:%d", config.Port))
+	err = app.Listen(fmt.Sprintf(":%d", config.Port))
 	if err != nil {
 		logger.Error(err.Error())
 	}
