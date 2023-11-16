@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"log/slog"
 	"os"
 
@@ -42,7 +43,9 @@ func main() {
 	app.Post("/add-item", handler.ItemHandler)
 
 	// Start server
-	err = app.Listen(":3000")
+	port := 3000
+	logger.Info(fmt.Sprintf("Starting server on localhost:%d", port))
+	err = app.Listen(fmt.Sprintf(":%d", port))
 	if err != nil {
 		logger.Error(err.Error())
 	}
