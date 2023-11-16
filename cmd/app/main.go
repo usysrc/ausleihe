@@ -15,7 +15,7 @@ import (
 
 func main() {
 	// create the logger
-	logger := slog.New(slog.NewTextHandler(os.Stdout, nil))
+	logger := slog.New(slog.NewJSONHandler(os.Stdout, nil))
 
 	// create the database
 	database, err := db.CreateDatabase()
