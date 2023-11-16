@@ -7,7 +7,7 @@ docker compose up postgres -d --wait
 trap 'docker compose down' EXIT
 
 # migrate the database
-go run cmd/migrate/main.go
+go run cmd/migrate/main.go up
 
 # start the server
 air --build.cmd "go build -o ./bin/api ./cmd/app/" --build.bin "./bin/api"
